@@ -2,9 +2,17 @@ import requests
 from pymongo import MongoClient
 
 # Setup MongoDB database
-client = MongoClient("mongodb://localhost:27017/")
-db = client.aircom_db
-collection = db.live_measurements
+MONGO_URI = "mongodb+srv://kyrstAircom_db_user:aircompasswd123@cluster0.84anxvx.mongodb.net/"
+
+try:
+    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+    # Trigger a quick connection check
+    client.server_info() 
+    db = client.aircom_db
+    collection = db.live_measurements
+    print("Successfully connected to MongoDB Atlas")
+except Exception as e:
+    print(f"Connection Error: {e}")
 
 # Location IDs of cities for obtaining in OpenAQ API
 CITY_IDS = {
@@ -26,6 +34,7 @@ CITY_IDS = {
     "Brighton": 1965629,
     "Cambridge": 4019582,
     "London": 270693,
+    "Scotland": 2847307,
     "Athens": 7832,
     "Trikala": 5526241,
     "Kowloon": 7735,
