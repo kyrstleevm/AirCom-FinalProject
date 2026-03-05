@@ -111,7 +111,6 @@ def getCityInsight(city, activity_key, status_key):
     ufp_input = np.array([[data.get('pm25', 0)]])
     
     # AI PREDICTION MODELS
-    aqi_prediction = AQI_MODEL.predict(input)[0]
     risk_prediction = RISK_MODEL.predict(input)[0]
     ufp_prediction = UFP_MODEL.predict(ufp_input)[0]
 
@@ -139,7 +138,6 @@ def getCityInsight(city, activity_key, status_key):
     # Return statement of all outputs
     return {
         "pm25": float(data.get('pm25', 0)),
-        #"aqi_ai": max(0, float(aqi_prediction)),
         "aqi_math": aqi_math,
         "risk": str(risk_prediction),
         "ufp": round(ufp_prediction, 2),
@@ -152,6 +150,7 @@ def getCityInsight(city, activity_key, status_key):
 # Comparison Output Route
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    
     # Fetch current list of synced cities from database
     synced_cities = sorted(collection.distinct('city'))
 
@@ -179,6 +178,7 @@ def index():
         })
     
     return jsonify({"error": "City data not found in live database"}), 404
+
 
 if __name__ == "__main__":
     # Initial Test Run

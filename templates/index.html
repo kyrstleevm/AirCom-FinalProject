@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/animate.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>AirCom Engine</title>
+</head>
+<body>
+
+    <div class="intro-section animate__animated animate__fadeIn">
+        
+        <div class="intro-content">
+            <h1 class="animate__animated animate__fadeInUp animate__delay-1s">Hello, AirCom!</h1>
+            
+            <p class="animate__animated animate__fadeInUp animate__delay-2s">
+                AQI and Health Risk Comparison and Analyzer Tool
+            </p>
+        </div>
+        <a href="#survey-anchor" class="scroll-btn animate__animated animate__fadeInUp">Start Analysis ↓</a>
+    </div>
+
+    <div id="survey-anchor" class="survey-section animate__animated animate__fadeInUp">
+   </div>
+
+    <div class="survey-section animate__animated animate__fadeInUp animate__delay-2s">
+    <form id="aircom-form">
+        
+        <div class="input-group">
+            <label for="status">Health Status</label>
+            <select name="status" id="status">
+                <option value="healthy_adult">Healthy Adult</option>
+                <option value="child">Child</option>
+                <option value="elderly">Elderly</option>
+                <option value="asthmatic">Asthmatic</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="activity">Current Activity</label>
+            <select name="activity" id="activity">
+                <option value="resting">Resting</option>
+                <option value="walking">Walking</option>
+                <option value="running">Running</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="city_a">First City</label>
+            <input list="city-list" name="city_a" id="city_a" placeholder="Search first city...">
+        </div>
+
+        <div class="input-group">
+            <label for="city_b">Second City</label>
+            <input list="city-list" name="city_b" id="city_b" placeholder="Search second city...">
+        </div>
+
+        <datalist id="city-list">
+            {% for city in cities %}
+                <option value="{{ city }}">
+            {% endfor %}
+        </datalist>
+
+        <button type="submit" id="compare-btn">Analyze Air Quality</button>
+    </form>
+</div>
+<br>
+<br>
+<br>
+<script>
+        document.getElementById('aircom-form').addEventListener('submit', async (e) => {
+            e.preventDefault(); 
+            
+            const formData = new FormData(e.target);
+            const compareBtn = document.getElementById('compare-btn');
+            
+            compareBtn.innerText = "Analyzing Live Data...";
+            compareBtn.disabled = true;
+
+            try {
+                const response = await fetch('/', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error('City data not found in live database');
+
+                const data = await response.json();
+                console.log("AirCom Results:", data);
+
+                // Make sure this function exists elsewhere in your script!
+                displayResults(data);
+
+            } catch (error) {
+                alert(error.message);
+            } finally {
+                compareBtn.innerText = "Analyze Air Quality";
+                compareBtn.disabled = false;
+            }
+        });
+
+        // Dummy function so you don't get an error
+        function displayResults(data) {
+            console.log("Rendering data to UI...", data);
+        }
+    </script>
+</body>
+</html>

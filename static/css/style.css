@@ -1,0 +1,111 @@
+html {
+    scroll-behavior: smooth;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.intro-section {
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+                url('../images/background.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 92vh; 
+    padding: 40px 20px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.scroll-btn {
+    position: absolute;
+    bottom: 60px;  
+    right: 40px;
+    padding: 35px 40px;
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent glass look */
+    border: 1px solid white;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.scroll-btn:hover {
+    background: white;
+    color: #73a1d1;
+    transform: translateY(-3px); /* Gentle lift on hover */
+}
+
+.intro-content h1 {
+    font-size: 5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.intro-content p {
+    font-size: 1.8rem;
+    font-weight: 300;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.survey-section {
+    padding: 50px;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
+#aircom-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 800px;
+    width: 100%;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.input-group input, .input-group select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+#compare-btn {
+    grid-column: span 2;
+    padding: 15px;
+    background: #73a1d1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#compare-btn:hover {
+    background: #4a729d;
+}
