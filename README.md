@@ -6,7 +6,7 @@ This project predicts Air Quality Insights and Health Risks using machine learni
 
 ### 1. Prerequisites
 * **Python 3.10+**
-* **MongoDB** (Running locally on `localhost:27017`)
+* **MongoDB** (Running on Atlas)
 
 ### 2. Installation
 1. Clone the repository.
