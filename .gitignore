@@ -9,3 +9,6 @@ __pycache__/
 
 # System files
 .DS_Store
+
+# Frontend/Node dependencies
+node_modules/
