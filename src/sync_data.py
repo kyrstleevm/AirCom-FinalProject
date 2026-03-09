@@ -31,16 +31,15 @@ CITY_IDS = {
     "Helsinki": 4588,
     "Jyvaskyla": 2162538,
     "Kallio": 4593,
-    "Brighton": 1965629,
+    "London": 148,
     "Cambridge": 4019582,
-    "London": 270693,
+    "Brighton": 2675271,
     "Scotland": 2847307,
     "Athens": 7832,
     "Trikala": 5526241,
     "Kowloon": 7735,
     "Tel Aviv": 6129326,
     "Nagpur": 6112064,
-    "Amman": 5970178,
     "Chiba": 1215422,
     "Osaka": 1216006,
     "Tokyo": 1214515,
@@ -49,24 +48,24 @@ CITY_IDS = {
     "Seoul": 2622837,
     "Almaty": 6175495,
     "Luang Prabang": 3510965,
-    "Tyre": 6152206,
     "Hetauda": 5710078,
-    "Kathmandu": 6071242,
-    "Manila": 1543132,
+    "Kathmandu": 6176215,
+    "Manila": 4797646,
     "Karachi": 4712030,
     "Santarem": 7910,
     "Siberia": 5578266,
     "Alkhobar": 4421507,
     "Riyadh": 3185012,
+    "Baghdad": 5104909,
     "Singapore": 3040714,
-    "Las Vegas": 7712,
-    "Los Angeles": 947180,
-    "Miami": 4856579,
+    "Las Vegas": 344,
+    "Los Angeles": 3903452,
+    "Miami": 5943758,
     "Montana": 542,
     "New York": 616696,
     "South Carolina": 1650,
     "South Dakota": 1037,
-    "Tashkent": 4902926,
+    "Istanbul": 3091481,
     "Hanoi": 4946811,
     "Ho Chi Minh": 3276359,
 }
@@ -76,7 +75,7 @@ def sync_openaq():
         url = f"https://api.openaq.org/v3/locations/{loc_id}/sensors"
         try:
             # Took API Key from OpenAQ
-            response = requests.get(url, headers={"X-API-Key": "3503b070bab96835d523dc6f8b2c805dad7fce34779a8d88ab2fe5bc135d6565"}, timeout=15)
+            response = requests.get(url, headers={"X-API-Key": "ab5633287e8bc896472e1eb0c05e8b0e247942c53899a8f3152f92bf35181c38"}, timeout=15)
             if response.status_code == 200:
                 results = response.json().get('results', [])
                 if not results:
@@ -131,7 +130,7 @@ def sync_openaq():
         except Exception as e:
             print(f"Error: {e}")
 
-        
+
 if __name__ == "__main__":
     print("--- Starting Sync Process ---")
     sync_openaq()

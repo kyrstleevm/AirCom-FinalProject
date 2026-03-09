@@ -28,7 +28,7 @@ body, html {
     bottom: 60px;  
     right: 40px;
     padding: 35px 40px;
-    background: rgba(255, 255, 255, 0.15); /* Semi-transparent glass look */
+    background: rgba(255, 255, 255, 0.15);
     border: 1px solid white;
     color: rgb(255, 255, 255);
     text-decoration: none;
@@ -42,7 +42,7 @@ body, html {
 .scroll-btn:hover {
     background: white;
     color: #73a1d1;
-    transform: translateY(-3px); /* Gentle lift on hover */
+    transform: translateY(-3px);
 }
 
 .intro-content h1 {
@@ -108,4 +108,176 @@ body, html {
 
 #compare-btn:hover {
     background: #4a729d;
+}
+
+/* --- Verdict Banner --- */
+.verdict-card {
+    background: #ffffff;
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    gap: 15px;
+    transition: all 0.3s ease;
+}
+
+.trophy {
+    font-size: 2.5rem;
+}
+
+/* --- Comparison Grid & Cards --- */
+.comparison-grid {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
+    margin-top: 30px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.city-card {
+    flex: 1;
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 1px solid #eaeaea;
+    display: flex;
+    flex-direction: column; 
+}
+
+.city-card h2 {
+    margin-top: 0;
+    color: #333;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.vs-circle {
+    align-self: center;
+    background: #73a1d1;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(115, 161, 209, 0.4);
+    flex-shrink: 0;
+}
+
+/* --- Stats Inside the Cards --- */
+.date-text {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.stat-main {
+    margin: 15px 0;
+    padding: 20px;
+    background: #f8fbff;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.stat-main .value {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #2c3e50;
+    line-height: 1;
+    margin: 10px 0;
+}
+
+.stat-main .badge {
+    display: inline-block;
+    padding: 5px 15px;
+    background: #2c3e50;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.stat-sub {
+    display: flex;
+    justify-content: space-between;
+    background: #fdfdfd;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* --- Disease Mapping --- */
+.disease-box {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+    border: 2px dashed #e2e8f0;
+    border-radius: 12px;
+}
+
+.disease-box h4 {
+    margin: 0 0 15px 0;
+    color: #4a5568;
+    text-align: center;
+}
+
+.disease-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.disease-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95rem;
+}
+
+.disease-list li:last-child {
+    border-bottom: none;
+}
+
+.disease-list li span {
+    font-weight: 700;
+    color: #73a1d1;
+}
+
+.advice-text {
+    margin-top: auto;
+    padding-top: 20px;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .comparison-grid {
+        flex-direction: column; /* Stacks the cards vertically on phones */
+    }
+    .vs-circle {
+        margin: 20px 0;
+    }
 }

@@ -5,7 +5,7 @@ import pandas as pd
 import joblib
 import numpy as np
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="../templates", static_folder="../static")
 
 # AQI Calculation
 def calculate_aqi(pm25):
@@ -104,7 +104,7 @@ def getCityInsight(city, activity_key, status_key):
     ]], columns=MEASUREMENTS)
 
     # Preprocessing: Imputer replaces NaN values with trained medians
-                #    Scaler normalizes the data for the models
+    #Scaler normalizes the data for the models
     input = SCALER.transform(IMPUTER.transform(features))
 
     # UFP model requiring only 1 feature (PM2.5)
@@ -122,18 +122,18 @@ def getCityInsight(city, activity_key, status_key):
     # Advices Level Conditions
     if p_score >= 1000 or aqi_math >= 250:
         lvl = "critical"
-    elif p_score >= 450 or aqi_math >= 150 or risk_prediction == "Bad":
+    elif p_score >= 650 or aqi_math >= 150 or risk_prediction == "Unhealthy for Sensitive Groups":
         lvl = "high"
-    elif p_score >= 150 or aqi_math >= 51 or risk_prediction == "Moderate":
+    elif p_score >= 250 or aqi_math >= 51 or risk_prediction == "Moderate":
         lvl = "moderate"
     else:
         lvl = "low"
     
     # Disease Risk Mapping (Asthma, COPD complication, Cardiovascular strain)
     disease_risks = {
-        "Asthma": "Elevated" if risk_prediction in ["Bad"] and p_score > 300 or status_key == "asthmatic" else "Stable",
+        "Asthma": "Elevated" if risk_prediction in ["Unhealthy for Sensitive Groups"] and p_score > 300 or status_key == "asthmatic" else "Stable",
         "COPD Complication": "High Risk" if p_score > 600 else "Low Risk",
-        "Cardiovascular Strain": "Critical" if p_score > 1000 and (status_key == "elderly" or risk_prediction == "Bad") else "Normal"
+        "Cardiovascular Strain": "Critical" if p_score > 1000 and (status_key == "elderly" or risk_prediction == "Unhealthy") else "Normal"
     }
     # Return statement of all outputs
     return {
@@ -155,15 +155,16 @@ def index():
     synced_cities = sorted(collection.distinct('city'))
 
     if request.method == 'GET':
-        return jsonify({
-            "status": "AirCom Engine Online (Live Data)",
-            "available_cities": synced_cities,
-            "instructions": "Send POST with city_a, city_b, activity, status"
-        })
+        return render_template("index.html", cities=synced_cities)
     
     # If it's a POST command, return the raw data results
-    city_a = request.form.get('city_a')
-    city_b = request.form.get('city_b')
+    # Added .strip().title() so " london " automatically becomes "London"
+    raw_city_a = request.form.get('city_a', '')
+    raw_city_b = request.form.get('city_b', '')
+    
+    city_a = raw_city_a.strip().title()
+    city_b = raw_city_b.strip().title()
+    
     activity = request.form.get('activity', 'resting')
     status = request.form.get('status', 'healthy_adult')
 
@@ -177,8 +178,7 @@ def index():
             "meta": {"activity": activity, "status": status}
         })
     
-    return jsonify({"error": "City data not found in live database"}), 404
-
+    return jsonify({"error": f"City data not found for '{city_a}' or '{city_b}' in live database"}), 404
 
 if __name__ == "__main__":
     # Initial Test Run
