@@ -8,6 +8,7 @@ import os
 from dotenv import load_dotenv
 import threading
 import sys
+import time
 
 sys.path.append(os.path.dirname(__file__))
 from sync_data import sync_openaq
@@ -191,9 +192,15 @@ def index():
 
 # Create a wrapper function for the background task
 def start_background_sync():
-    print("--- Starting OpenAQ Sync in Background ---")
-    sync_openaq()
-    print("--- Background Sync Complete ---")
+    while True:
+        print("--- Starting OpenAQ Sync in Background ---")
+        try:
+            sync_openaq()
+            print("--- Background Sync Complete ---")
+        except Exception as e:
+            print(f"Sync failed: {e}")
+        
+        time.sleep(21600)   # Re-syncs the data from OpenAQ every 12 hours
 
 sync_thread = threading.Thread(target=start_background_sync)
 sync_thread.daemon = True  # This ensures the thread dies when the main app shuts down
