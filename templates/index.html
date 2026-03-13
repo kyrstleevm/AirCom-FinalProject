@@ -261,7 +261,16 @@
         updateCityColumn('city_b', 'b');
 
         // Smoothly scroll down to reveal the results
-        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+            const resultsContainer = document.getElementById('results-container');
+            const yOffset = -500; 
+            const y = resultsContainer.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            
+            window.scrollTo({
+                top: y,
+                behavior: 'smooth'
+            });
+        }, 300);
     }
 
     // DOWNLOAD RESULTS IN A PDF FILE
