@@ -6,6 +6,8 @@ import joblib
 import numpy as np
 import os
 from dotenv import load_dotenv
+import threading
+from sync_data import sync_openaq
 
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
 
@@ -182,6 +184,16 @@ def index():
         })
     
     return jsonify({"error": f"City data not found for '{city_a}' or '{city_b}' in live database"}), 404
+
+# Create a wrapper function for the background task
+def start_background_sync():
+    print("--- Starting OpenAQ Sync in Background ---")
+    sync_openaq()
+    print("--- Background Sync Complete ---")
+
+sync_thread = threading.Thread(target=start_background_sync)
+sync_thread.daemon = True  # This ensures the thread dies when the main app shuts down
+sync_thread.start()
 
 if __name__ == "__main__":
     # Initial Test Run
