@@ -7,6 +7,9 @@ import numpy as np
 import os
 from dotenv import load_dotenv
 import threading
+import sys
+
+sys.path.append(os.path.dirname(__file__))
 from sync_data import sync_openaq
 
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
