@@ -75,15 +75,16 @@ except Exception as e:
 
 
 # Importing and loading the models and data cleaning tools
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 try:
     # Regression and Classification Models
-    AQI_MODEL = joblib.load("../ml_models/aqi_model.pkl")
-    RISK_MODEL = joblib.load("../ml_models/risk_model.pkl")
-    UFP_MODEL = joblib.load("../ml_models/ufp_model.pkl")
+    AQI_MODEL = joblib.load(os.path.join(BASE_DIR, "ml_models", "aqi_model.pkl"))
+    RISK_MODEL = joblib.load(os.path.join(BASE_DIR, "ml_models", "risk_model.pkl"))
+    UFP_MODEL = joblib.load(os.path.join(BASE_DIR, "ml_models", "ufp_model.pkl"))
 
     # Scaler and Imputer Tools
-    SCALER = joblib.load("../ml_models/scaler.pkl")
-    IMPUTER = joblib.load("../ml_models/imputer.pkl")
+    SCALER = joblib.load(os.path.join(BASE_DIR, "ml_models", "scaler.pkl"))
+    IMPUTER = joblib.load(os.path.join(BASE_DIR, "ml_models", "imputer.pkl"))
 
     print("Models loaded successfully.")
 except Exception as e:
