@@ -1,8 +1,11 @@
 import requests
 from pymongo import MongoClient
+import os
+from dotenv import load_dotenv
 
 # Setup MongoDB database
-MONGO_URI = "mongodb+srv://kyrstAircom_db_user:aircompasswd123@cluster0.84anxvx.mongodb.net/"
+load_dotenv()
+MONGO_URI = os.getenv("MONGO_URI")
 
 try:
     client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)

@@ -4,6 +4,8 @@ from pymongo import MongoClient
 import pandas as pd
 import joblib
 import numpy as np
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
 
@@ -52,8 +54,9 @@ ADVICES = {
     "critical": "CRITICAL STAKE: Severe health risk. Avoid all outdoor exertion; use air filtration indoors."
 }
 
-# DATABASE CONNECTION
-MONGO_URI = "mongodb+srv://kyrstAircom_db_user:aircompasswd123@cluster0.84anxvx.mongodb.net/"
+# SECURED DATABASE CONNECTION
+load_dotenv()
+MONGO_URI = os.getenv("MONGO_URI")
 
 try:
     client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/animate.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <title>AirCom Engine</title>
 </head>
 <body>
@@ -130,6 +131,9 @@
         </div>
         
     </div>
+    <button id="download-report" class="btn-download" style="margin-top: 20px;">
+    📥 Download Health Report (PDF)
+    </button>
 </div>
 <script>
     // 1. The Form Submission Listener
@@ -259,6 +263,43 @@
         // Smoothly scroll down to reveal the results
         container.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+
+    // DOWNLOAD RESULTS IN A PDF FILE
+    document.getElementById('download-report').addEventListener('click', function () {
+    const element = document.getElementById('results-container');
+    
+    if (element.style.display === 'none') {
+        alert("Error. There are no results found!");
+        return;
+    }
+
+    // Remove animations
+    element.classList.remove('animate__animated', 'animate__fadeInUp', 'animate__fadeInDown');
+    
+    // Hide the button itself
+    this.style.display = 'none';
+
+    // The Clean Options
+    const options = {
+        margin:       0.5,
+        filename:     'AirCom_Health_Report.pdf',
+        image:        { type: 'jpeg', quality: 1.0 },
+        html2canvas:  { 
+            scale: 2, 
+            useCORS: true, 
+            scrollY: 0 
+        },
+        // Fixing the size to fit the results container
+        jsPDF:        { unit: 'in', format: 'a3', orientation: 'landscape' } 
+    };
+
+    // Generate the PDF
+    html2pdf().set(options).from(element).save().then(() => {
+        // Put the animations back
+        this.style.display = 'block';
+        element.classList.add('animate__animated', 'animate__fadeInUp');
+    });
+});
 </script>
 </body>
 </html>
