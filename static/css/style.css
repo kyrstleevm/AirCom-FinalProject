@@ -381,3 +381,22 @@ body, html {
 @media (max-width: 400px) {
     .city-columns { column-count: 1; }
 }
+
+/* Styling for the email links in the footer */
+.contact-info a {
+    text-decoration: none;
+    color: #4a5568;
+    transition: color 0.2s ease;
+}
+
+.contact-info a:hover {
+    color: #2b6cb0;
+    text-decoration: underline;
+}
+
+.contact-info {
+    min-width: 200px;
+    margin-top: 20px;
+    border-top: 1px solid #e1e4e8; /* Adds a small line to separate from cities */
+    padding-top: 15px;
+}

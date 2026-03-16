@@ -13,7 +13,7 @@ try:
     client.server_info() 
     db = client.aircom_db
     collection = db.live_measurements
-    print("Successfully connected to MongoDB Atlas")
+    print("Successfully connected to MongoDB Atlas -- Syncing Script")
 except Exception as e:
     print(f"Connection Error: {e}")
 
