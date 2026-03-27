@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 # Setup MongoDB database
 load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI")
+OPENAQ_API_KEY = os.getenv("OPENAQ_API_KEY")
 
 try:
     client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
@@ -80,7 +81,7 @@ def sync_openaq():
         url = f"https://api.openaq.org/v3/locations/{loc_id}/sensors"
         try:
             # Took API Key from OpenAQ
-            response = requests.get(url, headers={"X-API-Key": "ab5633287e8bc896472e1eb0c05e8b0e247942c53899a8f3152f92bf35181c38"}, timeout=15)
+            response = requests.get(url, headers={"X-API-Key": OPENAQ_API_KEY}, timeout=15)
             if response.status_code == 200:
                 results = response.json().get('results', [])
                 if not results:
