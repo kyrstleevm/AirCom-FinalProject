@@ -45,7 +45,7 @@ CITY_IDS = {
     "Kowloon": 7735,
     "Tel Aviv": 6129326,
     "Nagpur": 6112064,
-    "Mumbai": 3409482,
+    "Mumbai": 3409514,
     "Chiba": 1215422,
     "Osaka": 1216006,
     "Tokyo": 1214515,
@@ -139,4 +139,4 @@ def sync_openaq():
 
 if __name__ == "__main__":
     print("--- Starting Sync Process ---")
-    sync_openaq()
+    #sync_openaq()
