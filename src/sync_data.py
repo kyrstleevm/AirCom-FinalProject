@@ -45,7 +45,7 @@ CITY_IDS = {
     "Kowloon": 7735,
     "Tel Aviv": 6129326,
     "Nagpur": 6112064,
-    "Mumbai": 6945,
+    "Mumbai": 3409482,
     "Chiba": 1215422,
     "Osaka": 1216006,
     "Tokyo": 1214515,
