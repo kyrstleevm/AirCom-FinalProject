@@ -139,4 +139,4 @@ def sync_openaq():
 
 if __name__ == "__main__":
     print("--- Starting Sync Process ---")
-    #sync_openaq()
+    sync_openaq()
