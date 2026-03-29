@@ -200,7 +200,7 @@ def start_background_sync():
         except Exception as e:
             print(f"Sync failed: {e}")
         
-        time.sleep(21600)   # Re-syncs the data from OpenAQ every 12 hours
+        time.sleep(43200)   # Re-syncs the data from OpenAQ every 12 hours
 
 sync_thread = threading.Thread(target=start_background_sync)
 sync_thread.daemon = True  # This ensures the thread dies when the main app shuts down
