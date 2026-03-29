@@ -19,7 +19,7 @@ AirCom is a full-stack web application that predicts air quality insights and he
    python src/aircomApp.py
 
 ## 🚀 Key Features
-- **Live Global Data:** Pulls real-time environmental metrics from the OpenAQ API for over 50 global cities, that automatically re-syncs every 12 hours.
+- **Live Global Data:** Pulls real-time environmental metrics from the OpenAQ API for over 50 global cities, that automatically re-syncs every 6 hours.
 - **AI-Driven Insights:** Uses two custom-trained ML models to predict general health risk, and Ultrafine Particle (UFP) levels. Calculation of AQI is a plus.
 - **Personalization Engine:** Calculates unique risk scores based on user profiles (e.g., Asthmatic, Child, Elderly) and activities (Resting vs. Running).
 - **Disease Mapping:** Predicts the likelihood of Asthma elevation, COPD complications, and Cardiovascular strain.
