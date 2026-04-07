@@ -13,9 +13,12 @@ AirCom is a full-stack web application that predicts air quality insights and he
 2. Create a virtual environment:
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
-3. Create an .env file in the root directory:
+3. Initialize Frontend Dependencies:
+   npm install
+4. Create an .env file in the root directory:
    MONGO_URI=your_mongodb_atlas_connection_string
-4. Run locally:
+   OPENAQ_API_KEY=your_openaq_api_here
+5. Run locally:
    python src/aircomApp.py
 
 ## 🚀 Key Features
@@ -30,6 +33,6 @@ AirCom is a full-stack web application that predicts air quality insights and he
 - **Backend:** Python, Flask
 - **Database:** MongoDB Atlas (NoSQL)
 - **Server Management:** Gunicorn (Production WSGI Server)
-- **Machine Learning:** Scikit-Learn, Joblib, Pandas, NumPy
+- **Machine Learning:** Scikit-Learn, Joblib, Pandas, NumPy, Matplotlib, Seaborn
 - **Frontend:** HTML5, CSS3 (Animate.css), JavaScript (Fetch API, html2pdf.js)
 - **Deployment:** Render Cloud Infrastracture
