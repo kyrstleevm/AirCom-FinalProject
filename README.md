@@ -1,4 +1,4 @@
-# AirCom Final Project (WIP) 🌬️
+# AirCom Final Project 🌬️
 
 AirCom is a full-stack web application that predicts air quality insights and health risks using machine learning models and live data from OpenAQ API.
 
